@@ -44,6 +44,7 @@ def print_wp(x_grid, istep ,dens_grid, dir_name):
     fig1.set_yticks([])
     plt.tight_layout()
     plt.savefig(file_name)
+    plt.close()
 
 
     return
