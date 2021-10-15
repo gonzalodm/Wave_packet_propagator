@@ -24,7 +24,7 @@ int main(){
    vector < complex<double> > psin2_grid;
    const double               pi = 3.141592653589793;
    ifstream                   inputf;
-   ofstream                   outfile[5];
+   ofstream                   outfile[6];
 
 
    init_output(outfile);
@@ -35,7 +35,7 @@ int main(){
               x_min, x_max, dx, n_grid);
    wave_init(x_grid, dens_grid, psi_grid, Vx_grid, n_grid, aw, x0, p0);
 
-   write_output(x_grid, dens_grid, psi_grid, n_grid, 0, dt,
+   write_output(x_grid, dens_grid, psi_grid, Vx_grid, n_grid, 0, dt,
                 print_x, outfile);
 
    init_cuda_subs(& *psi_grid.begin(), & *x_grid.begin(),
@@ -47,7 +47,7 @@ int main(){
       propagate_cuda(n_grid, mass, dx, dt);
       if (tt%print_t==0){
          get_cuda_psi2(& *psi_grid.begin(), & *dens_grid.begin(), n_grid);
-         write_output(x_grid, dens_grid, psi_grid, n_grid, tt, dt,
+         write_output(x_grid, dens_grid, psi_grid, Vx_grid, n_grid, tt, dt,
                       print_x, outfile);
       }
    }

@@ -7,6 +7,7 @@ void init_output(ofstream* outfile){
     outfile[2].open("psi_im.out");
     outfile[3].open("density.out");
     outfile[4].open("time.out");
+    outfile[5].open("V_grid.out");
 
     return;
 }
@@ -131,13 +132,14 @@ void wave_init(vector<double>& x_grid, vector<double>& dens_grid,
 }
 //##############################################################################
 void write_output(vector<double>& x_grid, vector<double>& dens_grid,
-                  vector<complex<double> >& psi_grid, UNINT n_grid,
-                  int t_step, double dt, int print_x, ofstream* outfile){
+                  vector<complex<double> >& psi_grid, vector<double>& Vx_grid,
+                  UNINT n_grid, int t_step, double dt, int print_x, ofstream* outfile){
 
     if (t_step == 0){
         for (int ii; ii<n_grid; ii++){
             if(ii%print_x==0){
                 outfile[0]<< scientific << x_grid[ii] <<endl;
+                outfile[5]<< scientific << Vx_grid[ii] <<endl;
             }
         }
     }

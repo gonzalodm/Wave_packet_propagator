@@ -23,8 +23,8 @@ void wave_init(vector<double>& x_grid, vector<double>& dens_grid,
                UNINT n_grid, double ax, double x0, double p0);
 
 void write_output(vector<double>& x_grid, vector<double>& dens_grid,
-                  vector<complex<double> >& psi_grid, UNINT n_grid,
-                  int t_step, double dt, int print_x, ofstream* outfile);
+                  vector<complex<double> >& psi_grid, vector<double>& Vx_grid,
+                  UNINT n_grid, int t_step, double dt, int print_x, ofstream* outfile);
 
 
 #endif
