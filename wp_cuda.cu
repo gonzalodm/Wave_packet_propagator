@@ -20,27 +20,7 @@ __global__ void propagate_psi(cuDoubleComplex *psin_grid,
     cuDoubleComplex s2;
     cuDoubleComplex aux1;
 
-    if (ind == 1){
-        u2VC = make_cuDoubleComplex(2*u_term+Vx_grid[ind],0.0e0);
-        uC   = make_cuDoubleComplex(-u_term,0.0e0);
-        s1   = psi_grid[ind+1];
-        s1   = cuCmul(uC, s1);
-        s2   = cuCmul(u2VC, psi_grid[ind]);
-        aux1 = cuCadd(s1,s2);
-        aux1 = cuCmul(idt,aux1);
-        psin_grid[ind] = aux1;
-    }
-    else if (ind == n_grid-2){
-        u2VC = make_cuDoubleComplex(2*u_term+Vx_grid[ind],0.0e0);
-        uC   = make_cuDoubleComplex(-u_term,0.0e0);
-        s1   = psi_grid[ind-1];
-        s1   = cuCmul(uC, s1);
-        s2   = cuCmul(u2VC, psi_grid[ind]);
-        aux1 = cuCadd(s1,s2);
-        aux1 = cuCmul(idt,aux1);
-        psin_grid[ind] = aux1;
-    }
-    else if (ind > 1 && ind < n_grid-2){
+    if (ind > 0 && ind < n_grid-1){
         u2VC = make_cuDoubleComplex(2*u_term+Vx_grid[ind],0.0e0);
         uC   = make_cuDoubleComplex(-u_term,0.0e0);
         s1   = cuCadd(psi_grid[ind-1], psi_grid[ind+1]);
