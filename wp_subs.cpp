@@ -68,7 +68,7 @@ void read_input(double& x_min, double& x_max, UNINT& n_grid, double& dt,
     return;
 }
 //##############################################################################
-double V_potential_in_x(double xi){
+double V_potential_in_x(double xi, double mass){
     double Vx;
     // double x0 = 0.40e0;
     double x0 = 0.5e0;
@@ -82,8 +82,7 @@ double V_potential_in_x(double xi){
     // }
 
     double omega = 1000.0;
-
-    Vx = 0.5*0.5*pow(omega,2)*pow(xi-x0,2);
+    Vx = 0.5*mass*pow(omega,2)*pow(xi-x0,2);
 
     return Vx;
 }
@@ -93,7 +92,7 @@ void init_grids(vector<double>& x_grid, vector<double>& dens_grid,
                 vector<complex<double> >& psin1_grid,
                 vector<complex<double> >& psin2_grid,
                 vector<double>& Vx_grid, double x_min, double x_max,
-                double& dx, UNINT n_grid){
+                double& dx, UNINT n_grid, double mass){
 
     double xi = x_min;
     dx = (x_max-x_min)/double(n_grid-1);
@@ -104,7 +103,7 @@ void init_grids(vector<double>& x_grid, vector<double>& dens_grid,
         psi_grid.push_back((0.0e0,0.0e0));
         psin1_grid.push_back((0.0e0,0.0e0));
         psin2_grid.push_back((0.0e0,0.0e0));
-        Vx_grid.push_back(V_potential_in_x(xi));
+        Vx_grid.push_back(V_potential_in_x(xi,mass));
         xi += dx;
     }
 

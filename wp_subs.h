@@ -9,14 +9,14 @@ void read_input(double& x_min, double& x_max, UNINT& n_grid, double& dt,
                 int& tot_steps, int& print_t, int& print_x, double& x0,
                 double& p0, double& aw, double& mass, ifstream& inputf);
 
-double V_potential_in_x(double xi);
+double V_potential_in_x(double xi,double mass);
 
 void init_grids(vector<double>& x_grid, vector<double>& dens_grid,
                 vector<complex<double> >& psi_grid,
                 vector<complex<double> >& psin1_grid,
                 vector<complex<double> >& psin2_grid,
                 vector<double>& Vx_grid, double x_min, double x_max,
-                double& dx, UNINT n_grid);
+                double& dx, UNINT n_grid, double mass);
 
 void wave_init(vector<double>& x_grid, vector<double>& dens_grid,
                vector<complex<double> >& psi_grid, vector<double>& Vx_grid,

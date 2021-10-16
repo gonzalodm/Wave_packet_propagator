@@ -32,7 +32,7 @@ int main(){
               aw, mass, inputf);
    Particle part1(1, mass, p0, x0, aw);
    init_grids(x_grid, dens_grid, psi_grid, psin1_grid, psin2_grid, Vx_grid,
-              x_min, x_max, dx, n_grid);
+              x_min, x_max, dx, n_grid, mass);
    wave_init(x_grid, dens_grid, psi_grid, Vx_grid, n_grid, aw, x0, p0);
 
    write_output(x_grid, dens_grid, psi_grid, Vx_grid, n_grid, 0, dt,
